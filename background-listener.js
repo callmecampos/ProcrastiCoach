@@ -38,9 +38,13 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab){
         console.log('Extension enabled: ' + items.enabled);
         if (domain != lastUrl) {
           lastUrl = domain;
+          alert(items.enabled);
           if (items.enabled && urlMatch) {
-            var response = window.prompt("Why are you on this page?", "Explain here...");
-            // run some NLP jank
+            let placeholder = "Explain here...";
+            var response = placeholder;
+            while (placeholder == response) {
+              response = window.prompt("Why are you on this page?", placeholder);
+            }
           }
         }
         called = false;
